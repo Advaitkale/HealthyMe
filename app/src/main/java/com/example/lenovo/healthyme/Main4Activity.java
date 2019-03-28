@@ -44,7 +44,7 @@ public class Main4Activity extends AppCompatActivity
     EditText et1,et2,et3,et4;
 
 
-    String month[]={"Blood Glucose","Insulin","Hemoglobin","Cholesterol"};
+    String month[]={"Blood Glucose","Insulin","Haemoglobin","Cholesterol"};
     PieChart chart;
 
 
