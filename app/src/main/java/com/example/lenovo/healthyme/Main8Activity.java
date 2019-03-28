@@ -33,6 +33,7 @@ public class Main8Activity extends AppCompatActivity
             }
         });
 
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -43,6 +44,14 @@ public class Main8Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
+    private void share(){
+        Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "Here is the share content body";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

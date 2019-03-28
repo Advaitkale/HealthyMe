@@ -23,7 +23,7 @@ import android.widget.Toast;
 public class Main10Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     ListView listView;
-    String call[]={"9028620349","8828460376","9930116923","8452037371"};
+    String call[]={"9028620349","8828460376","9930116923","8452037371","9028620349","8828460376","9930116923","8452037371","9028620349","8828460376","9930116923","8452037371","9028620349","8828460376","9930116923","8452037371"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,7 +32,7 @@ public class Main10Activity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         listView = (ListView)findViewById(R.id.listView);
-        String [] subjects = {"Doctor 1", "Doctor 2","Doctor 3","Doctor 4"};
+        String [] subjects = {"Doctor 1", "Doctor 2","Doctor 3","Doctor 4","Doctor 5","Doctor 6","Doctor 7","Doctor 8","Doctor 9", "Doctor 10","Doctor 11","Doctor 12","Doctor 13","Doctor 14","Doctor 15","Doctor 16"};
 
 
         ListAdapter listAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,subjects);
@@ -54,7 +54,7 @@ public class Main10Activity extends AppCompatActivity
 
                 String sub = String.valueOf(parent.getItemAtPosition(position));
 
-                Toast.makeText(Main10Activity.this, sub , Toast.LENGTH_SHORT).show();
+                Toast.makeText(Main10Activity.this,"Calling " +sub , Toast.LENGTH_SHORT).show();
                 String dial="tel:"+call[0];
                 startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
 
@@ -143,8 +143,7 @@ public class Main10Activity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(getApplicationContext(),Main8Activity.class);
-            startActivity(intent);
+            share();
 
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
@@ -155,5 +154,13 @@ public class Main10Activity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void share(){
+        Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "https://github.com/Advaitkale/HealthyMe";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 }

@@ -1,6 +1,7 @@
 package com.example.lenovo.healthyme;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -31,8 +32,19 @@ public class Main3Activity extends AppCompatActivity
         i1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),Main9Activity.class);
-                startActivity(intent);
+                openWebPage("https://www.practo.com/");
+            }
+        });
+        i2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebPage("https://www.netmeds.com/");
+            }
+        });
+        i3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openWebPage("https://pharmeasy.in/");
             }
         });
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +66,15 @@ public class Main3Activity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
     }
-
+    public void openWebPage(String url)
+    {
+        Uri webpage=Uri.parse(url);
+        Intent i=new Intent(Intent.ACTION_VIEW,webpage);
+        if(i.resolveActivity(getPackageManager())!=null)
+        {
+            startActivity(i);
+        }
+    }
 
     @Override
     public void onBackPressed() {
@@ -117,8 +137,7 @@ public class Main3Activity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(getApplicationContext(),Main8Activity.class);
-            startActivity(intent);
+            share();
 
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
@@ -130,5 +149,12 @@ public class Main3Activity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-
+    private void share(){
+        Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "https://github.com/Advaitkale/HealthyMe";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
 }

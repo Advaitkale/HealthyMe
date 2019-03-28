@@ -13,8 +13,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
+import android.widget.Toast;
 
 public class Main7Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -22,6 +28,8 @@ public class Main7Activity extends AppCompatActivity
     EditText e1;
     EditText e2;
     EditText e3;
+    Spinner s;
+    Spinner s2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +41,29 @@ public class Main7Activity extends AppCompatActivity
         e1=(EditText)findViewById(R.id.edit1);
         e2=(EditText)findViewById(R.id.edit2);
         e3=(EditText)findViewById(R.id.edit3);
+        s = (Spinner) findViewById(R.id.spinner);
+        s2 = (Spinner) findViewById(R.id.spinner2);
+        String [] subjects = {"Lab 1", "Lab 2","Lab 3","Lab 4","Lab 5","Lab 6","Lab 7","Lab 8"};
+        String [] time = {"10:00AM-11:00AM", "11:00AM-12:00","12:00-1:00PM","1:00PM-2:00PM","2:00PM-3:00PM","3:00PM-4:00PM","4:00PM-5:00PM","5:00PM-6:00PM"};
+
+
+
+        SpinnerAdapter sa = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,subjects);
+        SpinnerAdapter sb = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,time);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String name=e1.getText().toString();
+                String contact=e2.getText().toString();
+                String doc=e3.getText().toString();
+                Toast.makeText(Main7Activity.this,"Appointment Booked for "+ name + "("+contact+") "+ " with (DR."+doc+")",Toast.LENGTH_LONG).show();
+
+            }
+        });
+
+
+        s.setAdapter(sa);
+        s2.setAdapter(sb);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

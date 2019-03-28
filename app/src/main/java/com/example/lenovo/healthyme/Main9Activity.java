@@ -1,6 +1,7 @@
 package com.example.lenovo.healthyme;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 
@@ -45,6 +46,7 @@ public class Main9Activity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
     }
 
     @Override
@@ -63,6 +65,8 @@ public class Main9Activity extends AppCompatActivity
         getMenuInflater().inflate(R.menu.main9, menu);
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

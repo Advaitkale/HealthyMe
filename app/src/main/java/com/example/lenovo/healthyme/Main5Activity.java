@@ -119,6 +119,15 @@ public class Main5Activity extends AppCompatActivity
         makePhoneCall(callnum);
     }
 
+    private void share(){
+        Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "https://github.com/Advaitkale/HealthyMe";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
+
     private void makePhoneCall(int callno)
     {
         if(callno==0)
@@ -219,8 +228,7 @@ public class Main5Activity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(getApplicationContext(),Main8Activity.class);
-            startActivity(intent);
+            share();
 
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);

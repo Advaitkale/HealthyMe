@@ -44,7 +44,7 @@ public class Main4Activity extends AppCompatActivity
     EditText et1,et2,et3,et4;
 
 
-    String month[]={"Blood Glucose","Insulin","Hemoglobin","Cholesterol"};
+    String month[]={"Blood Glucose","Insulin","Haemoglobin","Cholesterol"};
     PieChart chart;
 
 
@@ -212,8 +212,7 @@ public class Main4Activity extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(getApplicationContext(),Main8Activity.class);
-            startActivity(intent);
+            share();
 
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
@@ -224,5 +223,13 @@ public class Main4Activity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+    private void share(){
+        Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "https://github.com/Advaitkale/HealthyMe";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 }

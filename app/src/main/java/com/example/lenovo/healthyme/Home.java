@@ -104,8 +104,7 @@ public class Home extends AppCompatActivity
             startActivity(intent);
 
         } else if (id == R.id.nav_share) {
-            Intent intent = new Intent(getApplicationContext(),Main8Activity.class);
-            startActivity(intent);
+           share();
 
         } else if (id == R.id.nav_send) {
             Intent intent = new Intent(getApplicationContext(),Main2Activity.class);
@@ -146,5 +145,13 @@ public class Home extends AppCompatActivity
     {
         Intent intent = new Intent(getApplicationContext(),Main7Activity.class);
         startActivity(intent);
+    }
+    private void share(){
+        Intent sharingIntent=new Intent(Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        String shareBody = "https://github.com/Advaitkale/HealthyMe";
+        sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Subject Here");
+        sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
+        startActivity(Intent.createChooser(sharingIntent, "Share via"));
     }
 }
