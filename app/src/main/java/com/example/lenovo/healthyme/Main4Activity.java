@@ -111,11 +111,7 @@ public class Main4Activity extends AppCompatActivity
 
     public void setUpPieCHart() {
 
-        /*rain[0]=Float.parseFloat(et1.getText().toString());
-        rain[1]=Float.parseFloat(et2.getText().toString());
-        rain[2]=Float.parseFloat(et3.getText().toString());
-        rain[3]=Float.parseFloat(et4.getText().toString());*/
-
+        
        chart.setVisibility(View.VISIBLE);
 
         str1=et1.getText().toString();
